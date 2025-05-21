@@ -1,4 +1,3 @@
 fastapi
-uvicornclear
-google-cloud-dialogflow
+uvicorn
 python-dotenv
