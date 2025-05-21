@@ -11,5 +11,5 @@ def start_chat(message):
 
 
 def test_url():
-    response = rl.requests.post(url=f"", headers=rl.headers)
+    response = rl.requests.post(url=f"www.googlr.com", headers=rl.headers)
     return response.text
