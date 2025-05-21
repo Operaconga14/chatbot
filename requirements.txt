@@ -1,0 +1,4 @@
+fastapi
+uvicornclear
+google-cloud-dialogflow
+python-dotenv
