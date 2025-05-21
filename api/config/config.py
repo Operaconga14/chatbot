@@ -1,12 +1,12 @@
 from fastapi import FastAPI, APIRouter, Request, File, UploadFile, status, HTTPException
-from imagekitio import ImageKit
+# from imagekitio import ImageKit
 import uuid
 import os
-import multipart
+# import multipart
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import requests
+# import requests
 
 
 class ReuseableLibrary:
@@ -16,13 +16,13 @@ class ReuseableLibrary:
     Request = Request
     File = File
     UploadFile = UploadFile
-    ImageKit = ImageKit
+    # ImageKit = ImageKit
     uuid = uuid
     status = status
     HTTPException = HTTPException
     os = os
-    requests = requests
-    multipart = multipart
+    # requests = requests
+    # multipart = multipart
     load_dotenv = load_dotenv
     CORSMiddleware = CORSMiddleware
     origins = [
