@@ -1,4 +1,4 @@
-from fastapi import FastAPI, status, HTTPException
+from .config.config import FastAPI, HTTPException, status
 
 app = FastAPI()
 
