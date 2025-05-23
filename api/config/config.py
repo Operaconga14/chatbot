@@ -1,13 +1,10 @@
-from fastapi import (
-    FastAPI,
-    status,
-    HTTPException,
-    APIRouter
-)
+from fastapi import FastAPI, status, HTTPException, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 import uuid
 import os
 from dotenv import load_dotenv
+from pydantic import BaseModel
+from typing import Any, Dict
 
 origins = [
     "https://operachatbot.netlify.app",  # frontend URL (adjust as needed),
