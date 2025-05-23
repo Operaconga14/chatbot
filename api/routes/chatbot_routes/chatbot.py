@@ -1,4 +1,6 @@
-from ...config.config import APIRouter, HTTPException, status
+from ...config.config import APIRouter, HTTPException, status, Response, Request
+from ...controllers.chatbot_controller import generate_session_id, start_chat
+
 
 router = APIRouter(tags=["ChatBot"])
 
@@ -11,5 +13,6 @@ def read_chatbot():
 
 
 @router.post("/conversation")
-def start_conversation():
-    pass
+async def start_conversation(response: Response):
+    conversation = await start_chat(response=response)
+    return conversation
