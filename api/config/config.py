@@ -33,3 +33,22 @@ TOKEN_URL = os.getenv("TOKEN_URL")
 AUTH_PROVIDER_X509_CERT_URL = os.getenv("AUTH_PROVIDER_X509_CERT_URL")
 CLIENT_X509_CER_URL = os.getenv("CLIENT_X509_CER_URL")
 UNIVERSE_DOMAIN = os.getenv("UNIVERSE_DOMAIN")
+
+
+credentials = {
+    "type": "service_account",
+    "project_id": PROJECT_ID,
+    "private_key_id": PRIVATE_KEY_ID,
+    "private_key": PRIVATE_KEY,
+    "client_id": CLIENT_ID,
+    "client_email": CLIENT_EMAIL,
+    "auth_uri": AUTH_URL,
+    "token_uri": TOKEN_URL,
+    "auth_provider_x509_cert_url": AUTH_PROVIDER_X509_CERT_URL,
+    "client_x509_cert_url": CLIENT_X509_CER_URL,
+    "universe_domain": UNIVERSE_DOMAIN,
+}
+
+cred = service_account.Credentials.from_service_account_info(credentials)
+scoped_cred = cred.with_scopes(["https://www.googleapis.com/auth/dialogflow"])
+scoped_cred.refresh(GoogleRequest())
