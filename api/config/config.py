@@ -25,7 +25,6 @@ load_dotenv()
 
 origins = [
     "https://operachatbot.netlify.app",  # frontend URL (adjust as needed)
-    "http://127.0.0.1:8000",
     "http://localhost:5173",
     # add other origins if needed
 ]
