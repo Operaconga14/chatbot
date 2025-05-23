@@ -4,6 +4,10 @@ from fastapi import (
     HTTPException,
     APIRouter
 )
+from fastapi.middleware.cors import CORSMiddleware
+import uuid
+import os
+from dotenv import load_dotenv
 
 origins = [
     "https://operachatbot.netlify.app",  # frontend URL (adjust as needed),
