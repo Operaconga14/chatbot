@@ -103,7 +103,7 @@ async def conversational_chat(chat_request: ChatRequest, request: rl.Request):
         # Generate or get session ID
         session_id = request.cookies.get("session_id")
         if not session_id:
-            session_id = str(uuid.uuid4())
+            session_id = generate_session_id()
 
         # Create session path
         session = session_client.session_path(PROJECT_ID, session_id)
