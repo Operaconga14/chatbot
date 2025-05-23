@@ -1,6 +1,7 @@
 from api.config.config import rl
 from google.auth.transport.requests import Request
 from api.controller.chat_controller import generate_session_id
+import os
 
 
 # Initailize fastapi
@@ -19,21 +20,33 @@ app.add_middleware(
     allow_headers=["*"],  # allowed headers
 )
 
-private_key = rl.PRIVATE_KEY.replace("\\n", "\n")
+PROJECT_ID = os.getenv("PROJECT_ID")
+LANGUAGE_CODE = "en-US"
+PRIVATE_KEY_ID = os.getenv("PRIVATE_KEY_ID")
+PRIVATE_KEY = os.getenv("PRIVATE_KEY")
+CLIENT_EMAIL = os.getenv("CLIENT_EMAIL")
+CLIENT_ID = os.getenv("CLIENT_ID")
+AUTH_URL = os.getenv("AUTH_URL")
+TOKEN_URL = os.getenv("TOKEN_URL")
+AUTH_PROVIDER_X509_CERT_URL = os.getenv("AUTH_PROVIDER_X509_CERT_URL")
+CLIENT_X509_CER_URL = os.getenv("CLIENT_X509_CER_URL")
+UNIVERSE_DOMAIN = os.getenv("UNIVERSE_DOMAIN")
+
+private_key = PRIVATE_KEY.replace("\\n", "\n")
 
 # Authenticate rl.DialogFlow
 credentials = {
     "type": "service_account",
-    "project_id": rl.PROJECT_ID,
-    "private_key_id": rl.PRIVATE_KEY_ID,
+    "project_id": PROJECT_ID,
+    "private_key_id": PRIVATE_KEY_ID,
     "private_key": private_key,
-    "client_id": rl.CLIENT_ID,
-    "client_email": rl.CLIENT_EMAIL,
-    "auth_uri": rl.AUTH_URL,
-    "token_uri": rl.TOKEN_URL,
-    "auth_provider_x509_cert_url": rl.AUTH_PROVIDER_X509_CERT_URL,
-    "client_x509_cert_url": rl.CLIENT_X509_CER_URL,
-    "universe_domain": rl.UNIVERSE_DOMAIN,
+    "client_id": CLIENT_ID,
+    "client_email": CLIENT_EMAIL,
+    "auth_uri": AUTH_URL,
+    "token_uri": TOKEN_URL,
+    "auth_provider_x509_cert_url": AUTH_PROVIDER_X509_CERT_URL,
+    "client_x509_cert_url": CLIENT_X509_CER_URL,
+    "universe_domain": UNIVERSE_DOMAIN,
 }
 
 # Initialize Dialogflow client
@@ -93,12 +106,12 @@ async def conversational_chat(chat_request: ChatRequest, request: rl.Request):
             session_id = str(uuid.uuid4())
 
         # Create session path
-        session = session_client.session_path(rl.PROJECT_ID, session_id)
+        session = session_client.session_path(PROJECT_ID, session_id)
 
         # Create text input
         text_input = rl.dialogflow.TextInput(
             text=user_message,
-            language_code=rl.LANGUAGE_CODE,
+            language_code=LANGUAGE_CODE,
         )
         query_input = rl.dialogflow.QueryInput(text=text_input)
 
