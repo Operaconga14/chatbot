@@ -5,6 +5,10 @@ import os
 from dotenv import load_dotenv
 from pydantic import BaseModel
 from typing import Any, Dict
+from google.oauth2 import service_account
+from google.auth.transport.requests import Request as GoogleRequest
+from google.api_core.exceptions import GoogleAPICallError
+from google.cloud import dialogflow_v2 as dialogflow
 
 load_dotenv()
 
