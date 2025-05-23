@@ -58,7 +58,7 @@ class ReuseableLibrary:
     load_dotenv = load_dotenv
     CORSMiddleware = CORSMiddleware
     origins = [
-        f"{os.getenv('FRONTEND_URL')}",  # frontend URL (adjust as needed)
+        "https://operachatbot.netlify.app",  # frontend URL (adjust as needed)
         "http://127.0.0.1:8000",
         "http://localhost:5173"
         # add other origins if needed
