@@ -6,7 +6,6 @@ from pydantic import BaseModel
 from typing import Any, Dict
 from google.auth.transport.requests import Request as GoogleRequest
 from google.oauth2 import service_account
-from google.cloud import dialogflow
 import uuid
 import os
 import requests
