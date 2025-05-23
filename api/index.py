@@ -1,10 +1,26 @@
-from .config.config import FastAPI, HTTPException, status, API_V1
+from .config.config import (
+    FastAPI,
+    HTTPException,
+    status,
+    API_V1,
+    CORSMiddleware,
+    origins,
+)
 from .routes.chatbot_routes import chatbot
 
 app = FastAPI(
     title="Chat Bot API",
     description="Chatbot API swagger documentation and testing",
     version="1.0.0",
+)
+
+# Initialize middlware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # or ["*"] to allow all origins (not recommended for prod)
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS"],  # allowed HTTP methods
+    allow_headers=["*"],  # allowed headers
 )
 
 

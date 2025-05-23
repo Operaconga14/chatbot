@@ -17,7 +17,7 @@ def read_chatbot():
     )
 
 
-@router.post("/conversation")
+@router.post("/conversation", summary="Route for conversation with bot")
 async def start_conversation(
     response: Response, request: Request, message: ChatRequest
 ):
@@ -28,7 +28,7 @@ async def start_conversation(
     return conversation
 
 
-@router.post("/end")
+@router.post("/end", summary="Route to end conversation End and to delete chat traces")
 async def end_conversation(request: Request):
     conversation_end = close_conversation(request=request)
     return conversation_end
