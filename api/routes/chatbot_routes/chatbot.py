@@ -3,8 +3,9 @@ from ...controllers.chatbot_controller import (
     generate_session_id,
     start_chat,
     close_conversation,
+    is_valid_session_id,
 )
-from ...models.schemas import ChatRequest
+from ...models.schemas import ChatRequest, CloseRequest
 
 
 router = APIRouter(tags=["ChatBot"])
@@ -18,17 +19,17 @@ def read_chatbot():
 
 
 @router.post("/conversation", summary="Route for conversation with bot")
-async def start_conversation(
-    response: Response, request: Request, message: ChatRequest
-):
-    user_message = message.message
-    conversation = await start_chat(
-        response=response, request=request, message=user_message
-    )
+async def start_conversation(message: ChatRequest):
+    if not is_valid_session_id(message.session_id):
+        session_id = generate_session_id()
+    else:
+        session_id = message.session_id
+
+    conversation = await start_chat(message=message.message, session_id=session_id)
     return conversation
 
 
 @router.post("/end", summary="Route to end conversation End and to delete chat traces")
-async def end_conversation(request: Request):
-    conversation_end = close_conversation(request=request)
+async def end_conversation(payload: CloseRequest):
+    conversation_end = close_conversation(payload=payload.session_id)
     return conversation_end

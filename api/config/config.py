@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
 from pydantic import BaseModel
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from google.auth.transport.requests import Request as GoogleRequest
 from google.oauth2 import service_account
 import uuid
